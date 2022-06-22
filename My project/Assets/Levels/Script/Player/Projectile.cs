@@ -21,18 +21,20 @@ public class Projectile : MonoBehaviour
     {
         if (hit) return;
         float movementSpeed = speed * Time.deltaTime * direction;
-        transform.Translate(movementSpeed, 0 ,0 );
+        transform.Translate(movementSpeed, 0 ,0);
 
         lifetime += Time.deltaTime;
         if (lifetime > 5) gameObject.SetActive(false);
         
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hit = true;
         collision.enabled = false;
         anim.SetTrigger("explode");
     }
+
     public void SetDirection(float _direction)
     {
         lifetime = 0;
@@ -47,6 +49,7 @@ public class Projectile : MonoBehaviour
 
         transform.localScale = new Vector3(localscaleX, transform.localScale.y, transform.localScale.z);
     }
+    
     private void Deactivate()
     {
         gameObject.SetActive(false); 
